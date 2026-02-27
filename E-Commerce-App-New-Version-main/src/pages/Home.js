@@ -24,7 +24,7 @@ const Home = () => {
       if (sort) {
         fetchedP = data.filter((item) => {
           return (
-            item.category === "electronics" || item.category === "jewelery"
+            item.category === "electronics" || item.category === "jewelry."
           );
         });
       } else {
@@ -40,7 +40,7 @@ const Home = () => {
     fetchProducts();
   }, [filteredProducts, sort]);
 
-  // console.log the data every in a while
+  // console.log the data every once in a while
   // console.log(products);
   // get by categories products men's & women's clothing using filter
 
@@ -55,7 +55,7 @@ const Home = () => {
   // console.log the filteredProducts:
   // console.log(filterProducts);
   // create a section for a container
-  // map the product using key property
+  // map the product using the key property
   // add CSS in line for margin, border, padding, etc, using className
   return (
     <div>
@@ -73,15 +73,35 @@ const Home = () => {
               })}
           </div>
         </div>
-        <button
-          className="m-2 bg-black flex p-4 justify-center
-          items-center text-white w-full font-medium"
-          onClick={handleClick}
-        >
-          ELECTRONICS
-        </button>
-        <Login />
-      </section>
+<div class="flex justify-center my-10">
+  <button class="px-8 py-3 bg-zinc-900 hover:bg-purple-600 text-white font-semibold rounded-full tracking-widest uppercase text-sm transition-all duration-300 shadow-lg shadow-zinc-200">
+    Explore Electronics
+  </button>
+</div>
+<section className="max-w-md mx-auto my-16 p-8 bg-white border border-gray-100 rounded-[2rem] shadow-premium">
+  <h2 className="text-2xl font-bold mb-6 text-primary">Welcome Back</h2>
+  <form className="flex flex-col gap-y-4">
+    <div className="flex flex-col gap-y-1">
+      <label className="text-xs font-semibold uppercase text-gray-400 ml-1">Username</label>
+      <input 
+        type="text" 
+        className="w-full border border-gray-200 rounded-xl px-4 py-3 focus:border-purple-500 outline-none transition-all" 
+        placeholder="Enter your username"
+      />
+    </div>
+    <div className="flex flex-col gap-y-1">
+      <label className="text-xs font-semibold uppercase text-gray-400 ml-1">Password</label>
+      <input 
+        type="password" 
+        className="w-full border border-gray-200 rounded-xl px-4 py-3 focus:border-purple-500 outline-none transition-all" 
+        placeholder="••••••••"
+      />
+    </div>
+    <button className="mt-4 bg-primary text-white py-4 rounded-xl font-bold hover:bg-purple-600 transition-all shadow-md active:scale-[0.98]">
+      Sign In
+    </button>
+  </form>
+</section>
     </div>
   );
 };
