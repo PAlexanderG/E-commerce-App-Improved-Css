@@ -9,7 +9,7 @@ export default function Login({ token, setToken }) {
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState(null);
+  const [error] = useState("");
   const navigate = useNavigate();
   const logIn = async (username, password) => {
     try {
