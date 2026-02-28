@@ -12,12 +12,12 @@ const CartProvider = ({ children }) => {
   const [total, setTotal] = useState(0);
 
   //
-  useEffect(() => {
-    const total = cart.reduce((accumulator, currentItem) => {
-      return accumulator + currentItem.price * currentItem.amount;
-    }, 0);
-    setTotal(total);
-  });
+useEffect(() => {
+  const total = cart.reduce((accumulator, currentItem) => {
+    return accumulator + currentItem.price * currentItem.amount;
+  }, 0);
+  setTotal(total);
+}, [cart]);
 
   // update item amount: UseEffect
   useEffect(() => {
