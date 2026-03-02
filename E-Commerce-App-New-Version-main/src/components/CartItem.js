@@ -1,103 +1,58 @@
 import React, { useContext } from "react";
-// import link
-import { Link } from "react-router-dom";
-// import icons
-import { IoMdAdd, IoMdClose, IoMdRemove } from "react-icons/io";
-// import cart context
 import { CartContext } from "../contexts/CartContext";
+import { IoMdClose } from "react-icons/io";
 
-// passing item using parameters to title: { item }) & {item.title}
 const CartItem = ({ item }) => {
-  const { removeFromCart, increaseAmount, decreaseAmount } =
-    useContext(CartContext);
-  // destructure item
+  const {
+    removeFromCart,
+    increaseAmount,
+    decreaseAmount,
+  } = useContext(CartContext);
+
   const { id, title, image, price, amount } = item;
+
   return (
-    <div
-      className="flex gap-x-4 py-2 lg:px-6 border-b 
-    border-gray-200 w-full font-light text-gray-440"
-    >
-      <div
-        className="w-full min-h-[150px] flex item-center
-        gap-x-4"
-      >
-        {/* image */}
-        <Link to={`/product/${id}`}>
-          <img className="max-w-[80px]" src={image} alt="" />
-        </Link>
-        <div className="w-full flex flex-col">
-          {/* title & remove icon */}
-          <div className="flex justify-between mb-2">
-            {/* title  */}
-            <Link
-              to={`/product/${id}`}
-              className="text-sm uppercase font-medium max-w-
-            [240px] text-primary hover:underline"
-            >
-              {title}
-            </Link>
-            {/* remove icon & add a button*/}
-            <div
-              onClick={() => removeFromCart(id)}
-              className="text-xl cursor-pointer"
-            >
-              <IoMdClose
-                className="text-gray-500
-              hover:text-purple-500 transition"
-              />
-            </div>
-          </div>
-          <div
-            className="flex gap-x-2 h-[36px]
-          tezt-sm"
+    <div className="flex gap-x-4 py-4 items-center">
+      
+      {/* Image */}
+      <img src={image} alt={title} className="w-20" />
+
+      {/* Info */}
+      <div className="flex-1">
+        <h4 className="text-sm font-medium">{title}</h4>
+
+        {/* Quantity Controls */}
+        <div className="flex items-center gap-x-3 mt-2">
+          <button
+            onClick={() => decreaseAmount(id)}
+            className="px-2 border"
           >
-            {/* qty */}
-            <div
-              className="flex flex-1 max-w-[100px]
-            items-center h-full border
-            text-primary font-medium"
-            >
-              {/* minus icon  & create a click button to pass it*/}
-              <div
-                onClick={() => decreaseAmount(id)}
-                className="flex-1 flex
-              justify-center items-center cursor-pointer h-full"
-              >
-                <IoMdRemove />
-              </div>
-              <div></div>
-              {/* amount */}
-              <div
-                className="h-full flex justify-center
-              items-center px-2"
-              >
-                {amount}
-              </div>
-              {/* plus icon */}
-              <div
-                onClick={() => increaseAmount(id)}
-                className="flex-1 h-full flex
-              justify-center items-center cursor-pointer"
-              >
-                <IoMdAdd />
-              </div>
-            </div>
-            {/* item price */}
-            <div
-              className="flex-1 flex items-center 
-            justify-around "
-            >
-              $ {price}
-            </div>
-            {/* final price */}
-            {/* use 2 decimals in price */}
-            <div
-              className="flex-1 flex justify-end
-            items-center text-primary font-medium "
-            >{`$ ${parseFloat(price * amount).toFixed(2)}`}</div>
-          </div>
+            -
+          </button>
+
+          <div>{amount}</div>
+
+          <button
+            onClick={() => increaseAmount(id)}
+            className="px-2 border"
+          >
+            +
+          </button>
+        </div>
+
+        <div className="mt-2 font-semibold">
+          $ {(price * amount).toFixed(2)}
         </div>
       </div>
+
+      {/* Remove Button */}
+      <button
+        onClick={() => removeFromCart(id)}
+        className="text-xl hover:text-red-500 transition"
+      >
+        <IoMdClose />
+      </button>
+
     </div>
   );
 };

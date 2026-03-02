@@ -5,11 +5,9 @@ import CartItem from "./CartItem";
 import { IoMdArrowForward } from "react-icons/io";
 
 const Sidebar = () => {
-  /* ✅ Hooks MUST be at top level */
   const { isOpen, handleClose } = useContext(SidebarContext);
   const { cart, clearCart, itemAmount, total } = useContext(CartContext);
 
-  /* ✅ Always compute memo — never conditionally */
   const totalDisplay = useMemo(() => {
     return Number(total || 0).toFixed(2);
   }, [total]);
@@ -18,50 +16,53 @@ const Sidebar = () => {
     <div
       className={`${
         isOpen ? "right-0" : "-right-full"
-      } w-full bg-white fixed top-0 h-full shadow-2xl md:w-[35vw] xl:max-w-[30vw]
-      transition-all duration-300 z-20 px-4 lg:px-[35px]`}
+      } fixed top-0 h-full w-full md:w-[35vw] xl:max-w-[30vw]
+      bg-white shadow-2xl z-50
+      transition-all duration-300
+      flex flex-col`}
     >
       {/* Header */}
-      <div className="flex items-center justify-between py-6 border-b">
-        <div className="uppercase text-sm font-semibold">
+      <div className="flex items-center justify-between py-6 px-4 border-b">
+        <div className="uppercase text-sm font-semibold tracking-wide">
           Shopping Bag ({itemAmount})
         </div>
 
         <button
           onClick={handleClose}
-          className="cursor-pointer py-2 px-2"
+          className="cursor-pointer p-2 hover:text-red-500 transition"
         >
           <IoMdArrowForward className="text-2xl" />
         </button>
       </div>
 
       {/* Cart Items */}
-      <div className="flex flex-col gap-y-2 h-[520px] lg:h-[640px] overflow-y-auto overflow-x-hidden border-b">
-        {cart && cart.length > 0 ? (
+      <div className="flex-1 overflow-y-auto px-4 divide-y">
+        {cart.length > 0 ? (
           cart.map((item) => (
-            <CartItem item={item} key={item.id} />
+            <CartItem key={item.id} item={item} />
           ))
         ) : (
-          <div className="text-center py-10 text-gray-400">
+          <div className="text-center py-16 text-gray-400">
             Your cart is empty
           </div>
         )}
       </div>
 
       {/* Footer */}
-      <div className="flex flex-col gap-y-3 py-4 mt-4">
-        <div className="flex w-full justify-between items-center">
-          <div className="uppercase font-semibold">
-            Total:
-          </div>
-          <div className="font-bold text-lg">
-            $ {totalDisplay}
-          </div>
+      <div className="p-4 border-t bg-white shadow-inner">
+        <div className="flex justify-between font-semibold text-lg mb-4">
+          <span>Total:</span>
+          <span>$ {totalDisplay}</span>
         </div>
 
         <button
           onClick={clearCart}
-          className="bg-red-500 text-white w-full py-3 rounded-md hover:bg-red-600 transition"
+          disabled={cart.length === 0}
+          className={`w-full py-3 rounded-md text-white transition ${
+            cart.length === 0
+              ? "bg-gray-400 cursor-not-allowed"
+              : "bg-red-500 hover:bg-red-600"
+          }`}
         >
           Clear Cart
         </button>
