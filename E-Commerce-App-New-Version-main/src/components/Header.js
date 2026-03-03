@@ -1,62 +1,73 @@
 import React, { useContext, useEffect, useState } from "react";
-// sidebar context
 import { SidebarContext } from "../contexts/SidebarContext";
-// import context
 import { CartContext } from "../contexts/CartContext";
-// import icon
 import { BsBag } from "react-icons/bs";
-// inport link
 import { Link } from "react-router-dom";
-// import logo
 import Logo from "../img/logo.svg";
-import Login from "./Login";
 
 const Header = () => {
-  // header state
   const [isActive, setIsActive] = useState(false);
   const { isOpen, setIsOpen } = useContext(SidebarContext);
   const { itemAmount } = useContext(CartContext);
-  // event listener
+
+  // ✅ Proper scroll listener
   useEffect(() => {
-    // For events whose type attribute value is type. The callback argument
-    // sets the callback that will be invoked when the event is dispatched.
-    window.addEventListener("scroll", () => {
-      window.scrollY > 60 ? setIsActive(true) : setIsActive(false);
-    });
-  });
+    const handleScroll = () => {
+      setIsActive(window.scrollY > 60);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
-    // change colors....
     <header
-      className={`${isActive ? "bg-white py-4 shadow-md" : "bg-none py-6"}
-    fixed w-full z-10 transition-all`}
+      className={`${
+        isActive
+  ? "bg-white/90 backdrop-blur-md py-3 shadow-md"
+  : "bg-transparent py-6"
+      } fixed w-full z-50 transition-all duration-300`}
     >
-      <div
-        className="container mx-auto flex items-center
-      justify-between h-full"
-      >
-        {/* logo */}
-        <Link to={"/"}>
-          <div>
-            <img className="w-[40px]" src={Logo} alt="" />
-          </div>
+      {/* ✅ Centered Container with Proper Padding */}
+      <div className="max-w-7xl mx-auto px-6 lg:px-12 flex items-center justify-between h-full">
+        
+        {/* Logo */}
+        <Link to="/" className="flex items-center">
+          <img
+            className="w-[40px] hover:scale-105 transition"
+            src={Logo}
+            alt="Logo"
+          />
         </Link>
-        {/* Login */}
-        <Link to={"/login"}>
-          <div>{Login}</div>
-        </Link>
-        {/* cart */}
-        <div
-          onClick={() => setIsOpen(!isOpen)}
-          className="cursor-pointer flex relative"
-        >
-          <BsBag className="text-2xl" />
+
+        {/* Right Side */}
+        <div className="flex items-center gap-6">
+          
+          {/* Login */}
+          <Link
+  to="/login"
+  className="text-sm font-medium hover:text-red-600 transition"
+>
+  Login
+</Link>
+
+          {/* Cart */}
           <div
-            className="bg-red-500 absolute -right-2
-        -bottom-2 text-[12px] w-[18px] h-[18px] text-white
-        rounded-full flex justify-center items-center"
+            onClick={() => setIsOpen(!isOpen)}
+            className="cursor-pointer relative"
           >
-            {itemAmount}
+            <BsBag className="text-2xl hover:text-red-600 transition" />
+
+<span
+  className="absolute -top-2 -right-2 bg-red-600 text-white
+  text-[11px] w-6 h-6 flex items-center justify-center
+  rounded-full font-medium"
+>
+              {itemAmount}
+            </span>
           </div>
+
         </div>
       </div>
     </header>

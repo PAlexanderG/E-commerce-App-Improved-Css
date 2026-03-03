@@ -1,5 +1,3 @@
-import React from "react";
-// import lin
 import { Link } from "react-router-dom";
 
 const Hero = () => {
@@ -31,13 +29,16 @@ const Hero = () => {
               Your Online Store
             </span>
           </h1>
-          <Link
-            to={"/"}
-            className="self-start uppercase font-semibold text-red-600
-          border-b-2 border-primary"
-          >
-            More Details!
-          </Link>
+<Link
+  to="/about"
+  className="self-start uppercase font-semibold text-red-600
+  border-b-2 border-primary"
+>
+  <h1 className="text-2xl font-bold bg-gradient-to-r from-red-600 to-orange-500 
+bg-clip-text text-transparent mb-6 text-center">
+  Project Details
+</h1>
+</Link>
         </div>
         {/* image */}
         {/* use "hidden lg:block to hidde the image for smaller devices size" */}
