@@ -32,9 +32,8 @@ items-center"
   const { title, price, description, image } = product;
   return (
     <section
-      className="pt-32 pb-12 lg:py-32 h-screen flex
-    items-center"
-    >
+  className="pt-32 pb-20 lg:py-32 min-h-screen flex items-center"
+>
       <div className="container mx-auto">
         {/* image & text wrapper */}
         <div
