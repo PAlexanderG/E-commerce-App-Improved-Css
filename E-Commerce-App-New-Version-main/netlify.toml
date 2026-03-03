@@ -1,4 +1,0 @@
-[build]
-  base = "E-Commerce-App-New-Version-main"
-  command = "npm run build"
-  publish = "build"
