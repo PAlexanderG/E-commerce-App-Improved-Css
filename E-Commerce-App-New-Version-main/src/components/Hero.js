@@ -35,7 +35,7 @@ const Hero = () => {
   border-b-2 border-primary"
 >
   <h1 className="text-2xl font-bold bg-gradient-to-r from-red-600 to-orange-500 
-bg-clip-text text-transparent mb-6 text-center">
+bg-clip-text text-transparent mb-3 text-center">
   Project Details
 </h1>
 </Link>
