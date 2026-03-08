@@ -73,24 +73,29 @@ return (
             Username
           </label>
           <input
-            className="w-full border rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-black"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            placeholder="Enter your username"
-          />
+  id="username"
+  name="username"
+  type="text"
+  className="w-full border rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-black"
+  value={username}
+  onChange={(e) => setUsername(e.target.value)}
+  placeholder="Enter your username"
+/>
         </div>
 
         <div>
           <label className="block text-sm font-medium mb-2">
             Password
           </label>
-          <input
-            type="password"
-            className="w-full border rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-black"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            placeholder="Enter your password"
-          />
+<input
+  id="password"
+  name="password"
+  type="password"
+  className="w-full border rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-black"
+  value={password}
+  onChange={(e) => setPassword(e.target.value)}
+  placeholder="Enter your password"
+/>
         </div>
 
         <button
