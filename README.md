@@ -131,6 +131,22 @@ An additional field provided by the API (isAuthor) is only valid for content cre
 
 This required careful state management and conditional rendering in React.
 
+## Authentication
+
+This project uses the Fake Store API authentication endpoint.
+
+POST https://fakestoreapi.com/auth/login
+
+Example credentials for testing:
+
+| Username | Password |
+|--------|--------|
+| johnd | m38rmF$ |
+
+You can also fetch additional users from:
+
+GET https://fakestoreapi.com/users
+
 # 🚀 Deployment & CI/CD
 
 -This application is deployed using Vercel.
